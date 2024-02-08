@@ -5,7 +5,9 @@ class AulaSerializer(serializers.ModelSerializer):
     class Meta:
         model=Aula
         fields=(
+            'id',
             'name',
             'max_capacity',
-            'has_negatoscope'
+            'has_negatoscope',
+            'has_screen'
         )

@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-wkkeimd7-cgg@!+t)557#c--rkd)u3c@_k@r+mpfh)!#o7te4a'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['149.50.135.56']
+ALLOWED_HOSTS = ['149.50.135.56', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -41,11 +41,22 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'corsheaders',
     'djoser',
-    'aulas'
+    'django_filters',
+    'aulas',
+    'reservations',
+    'users',
+    'calendar_day',
+    'matching_aulas',
+    'allowed_emails'
 ]
-
-CORS_ORIGIN_ALLOW_ALL=True
-
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:8080',
+]
+# settings.py
+CORS_ALLOW_HEADERS = ['content-type', 'accept', 'X-CSRFToken', 'Authorization']
+# CORS_ORIGIN_ALLOW_ALL=True
+CORS_ALLOW_CREDENTIALS = True
+CSRF_TRUSTED_ORIGINS = ['http://localhost:8080']
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -134,3 +145,7 @@ MEDIA_ROOT = BASE_DIR / 'media/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+}

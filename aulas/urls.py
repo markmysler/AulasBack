@@ -1,6 +1,9 @@
 from django.urls import path, include
-from aulas import views
+from rest_framework.routers import DefaultRouter
+from . import views
 
+router = DefaultRouter()
+router.register(r'aulas', views.AulasViewSet)
 urlpatterns = [
-    path('get-aulas/', views.AulasList.as_view()),
+    path('', include(router.urls))
 ]
